@@ -1,6 +1,6 @@
 // 每日一词 · Chino diario — widget para Scriptable (iPhone)
 // Pégalo en Scriptable y añade un widget de Scriptable (tamaño grande) a la pantalla de inicio.
-const URL_DATOS = "https://chino-diario.vercel.app/words.json";
+const URL_DATOS = "https://chino-diario-eta.vercel.app/words.json";
 
 const papel = Color.dynamic(new Color("#f4efe6"), new Color("#16130f"));
 const tinta = Color.dynamic(new Color("#1f1c18"), new Color("#ece4d4"));
@@ -31,7 +31,7 @@ const pequeno = fam === "small";
 const wg = new ListWidget();
 wg.backgroundColor = papel;
 wg.setPadding(18, 20, 18, 20);
-wg.url = "https://chino-diario.vercel.app";
+wg.url = "https://chino-diario-eta.vercel.app";
 
 const top = wg.addStack();
 const f = top.addText(`${zhNum(hoy.getMonth() + 1)}月${zhNum(hoy.getDate())}日`);
