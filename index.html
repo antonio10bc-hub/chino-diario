@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>每日一词 · Chino diario</title>
+<meta name="description" content="Una palabra en chino cada día.">
+<meta name="theme-color" content="#f4efe6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16130f" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="每日一词">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="icon" href="/icons/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;500&family=Noto+Serif:ital,wght@1,300&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main id="hoy" class="vista activa">
+  <header class="cabecera">
+    <span id="fecha-zh" class="fecha-zh"></span>
+    <span id="fecha-es" class="fecha-es"></span>
+  </header>
+
+  <section class="tarjeta" aria-live="polite">
+    <span id="cat" class="cat"></span>
+    <h1 id="hanzi" class="hanzi" lang="zh-CN"></h1>
+    <p id="pinyin" class="pinyin"></p>
+    <span class="linea" aria-hidden="true"></span>
+    <p id="es" class="es"></p>
+    <p id="nota" class="nota"></p>
+    <button id="hablar" class="hablar" aria-label="Escuchar pronunciación">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </section>
+
+  <nav class="pie">
+    <button data-ir="historial">历史 <span>historial</span></button>
+    <span class="sello" aria-hidden="true">日</span>
+    <button data-ir="widget">小组件 <span>widget</span></button>
+  </nav>
+</main>
+
+<section id="historial" class="vista">
+  <button class="volver" data-ir="hoy">← 今天</button>
+  <h2>历史 <span>palabras aprendidas</span></h2>
+  <ol id="lista" class="lista"></ol>
+</section>
+
+<section id="widget" class="vista">
+  <button class="volver" data-ir="hoy">← 今天</button>
+  <h2>小组件 <span>widget en el iPhone</span></h2>
+  <ol class="pasos">
+    <li>Instala <b>Scriptable</b> (gratis) desde la App Store.</li>
+    <li>Pulsa <b>Copiar script</b> aquí abajo.</li>
+    <li>En Scriptable, pulsa <b>+</b>, pega el código y llámalo <i>Chino diario</i>.</li>
+    <li>En la pantalla de inicio, mantén pulsado → <b>+</b> → <b>Scriptable</b> → tamaño <b>grande</b>.</li>
+    <li>Mantén pulsado el widget → <b>Editar widget</b> → Script: <i>Chino diario</i>.</li>
+  </ol>
+  <button id="copiar" class="boton">Copiar script</button>
+  <p class="consejo">Para tener la app: en Safari, botón compartir → <b>Añadir a pantalla de inicio</b>.</p>
+</section>
+
+<script src="/app.js"></script>
+</body>
+</html>

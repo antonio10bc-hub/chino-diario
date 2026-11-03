@@ -1,0 +1,53 @@
+:root{
+  --papel:#f4efe6; --papel2:#ebe4d6; --tinta:#1f1c18; --gris:#8a8173; --rojo:#b23a2e; --linea:#d8cfbf;
+  --zh:"Noto Serif SC","Songti SC",serif; --lat:"Cormorant Garamond",Georgia,serif; --py:"Noto Serif",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){:root{--papel:#16130f;--papel2:#1f1b16;--tinta:#ece4d4;--gris:#8f8676;--rojo:#c9503f;--linea:#3a332a}}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--papel);color:var(--tinta);font-family:var(--lat);
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  background-image:radial-gradient(ellipse at 50% 0%,var(--papel2),transparent 70%);
+  min-height:100dvh;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.vista{display:none;min-height:100dvh;padding:calc(env(safe-area-inset-top) + 28px) 24px calc(env(safe-area-inset-bottom) + 24px);max-width:520px;margin:0 auto}
+.vista.activa{display:flex;flex-direction:column;animation:aparece .8s ease}
+@keyframes aparece{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.cabecera{display:flex;justify-content:space-between;align-items:baseline;color:var(--gris)}
+.fecha-zh{font-family:var(--zh);font-weight:300;font-size:15px;letter-spacing:.2em}
+.fecha-es{font-style:italic;font-size:16px}
+
+.tarjeta{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px}
+.cat{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--gris);margin-bottom:8px}
+.hanzi{font-family:var(--zh);font-weight:500;font-size:clamp(96px,32vw,168px);line-height:1.1;letter-spacing:.04em}
+.hanzi.largo{font-size:clamp(72px,22vw,128px)}
+.pinyin{font-family:var(--py);font-weight:300;font-style:italic;font-size:26px;color:var(--rojo);margin-top:4px}
+.linea{width:28px;height:1px;background:var(--linea);margin:18px 0 12px}
+.es{font-size:26px}
+.nota{font-size:17px;font-style:italic;color:var(--gris);max-width:300px;margin-top:6px}
+.nota:empty{display:none}
+.hablar{margin-top:28px;width:52px;height:52px;border-radius:50%;border:1px solid var(--linea);display:grid;place-items:center;color:var(--gris);transition:.3s}
+.hablar:active{color:var(--rojo);border-color:var(--rojo);transform:scale(.94)}
+
+.pie{display:flex;justify-content:space-between;align-items:center}
+.pie button{font-family:var(--zh);font-weight:300;font-size:15px;letter-spacing:.15em;color:var(--gris);display:flex;flex-direction:column;align-items:center;gap:2px;min-width:72px}
+.pie button span{font-family:var(--lat);font-style:italic;letter-spacing:0;font-size:13px}
+.sello{font-family:var(--zh);font-weight:500;color:#f4efe6;background:var(--rojo);width:34px;height:34px;border-radius:5px;display:grid;place-items:center;font-size:19px;transform:rotate(-4deg);opacity:.92}
+
+.volver{align-self:flex-start;font-family:var(--zh);font-weight:300;color:var(--gris);letter-spacing:.15em;margin-bottom:28px}
+h2{font-family:var(--zh);font-weight:500;font-size:30px;letter-spacing:.15em;margin-bottom:24px}
+h2 span{display:block;font-family:var(--lat);font-weight:400;font-style:italic;letter-spacing:0;font-size:17px;color:var(--gris);margin-top:2px}
+.lista{list-style:none}
+.lista li{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--linea)}
+.lista .h{font-family:var(--zh);font-size:26px}
+.lista .p{font-family:var(--py);font-weight:300;font-style:italic;color:var(--rojo);font-size:16px}
+.lista .e{font-size:17px;color:var(--gris);text-align:right}
+.lista li.hoy .h::after{content:"今";font-size:11px;color:#f4efe6;background:var(--rojo);border-radius:3px;padding:1px 3px;margin-left:6px;vertical-align:middle}
+.pasos{padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:19px;line-height:1.35}
+.pasos li::marker{color:var(--rojo)}
+.boton{margin:28px 0 16px;padding:14px;border:1px solid var(--tinta);border-radius:999px;font-size:19px;letter-spacing:.05em}
+.boton:active{background:var(--tinta);color:var(--papel)}
+.consejo{color:var(--gris);font-style:italic;font-size:16px}
