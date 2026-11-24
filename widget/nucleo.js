@@ -19,8 +19,10 @@ const hoy = new Date();
 const [y, m, d] = datos.inicio.split("-").map(Number);
 const dias = Math.round((Date.UTC(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()) - Date.UTC(y, m - 1, d)) / 864e5);
 const n = datos.palabras.length;
-const w = datos.palabras[((dias % n) + n) % n];
+const clave = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, "0")}-${String(hoy.getDate()).padStart(2, "0")}`;
+const w = (datos.especiales || {})[clave] || datos.palabras[((dias % n) + n) % n];
 const largo = w.h.length > 2;
+const frase = w.h.length > 4;
 
 const NUM = ["〇","一","二","三","四","五","六","七","八","九","十"];
 const zhNum = k => k <= 10 ? NUM[k] : k < 20 ? "十" + (k % 10 ? NUM[k % 10] : "") : NUM[Math.floor(k / 10)] + "十" + (k % 10 ? NUM[k % 10] : "");
@@ -51,7 +53,19 @@ const centro = (s, font, color, lineas = 1) => {
   st.addSpacer(); return t;
 };
 
-if (fam === "medium") {
+if (frase && fam !== "small") {
+  // Frase larga: todo centrado y en varias líneas.
+  const med = fam === "medium";
+  wg.setPadding(med ? 14 : 18, 18, med ? 14 : 18, 18);
+  cabecera();
+  wg.addSpacer();
+  centro(w.h, zh("b", med ? 34 : 54), tinta, 2);
+  wg.addSpacer(med ? 4 : 10);
+  centro(w.p, Font.italicSystemFont(med ? 17 : 24), rojo, 2);
+  wg.addSpacer(med ? 3 : 8);
+  centro(w.es, Font.systemFont(med ? 16 : 21), tinta, 2);
+  wg.addSpacer();
+} else if (fam === "medium") {
   // Carácter grande a la izquierda, pinyin y significado a la derecha.
   wg.setPadding(14, 18, 14, 18);
   cabecera();
@@ -69,7 +83,7 @@ if (fam === "medium") {
   wg.setPadding(12, 12, 12, 12);
   txt(wg.addStack(), fecha, zh("r", 11), gris);
   wg.addSpacer();
-  centro(w.h, zh("b", largo ? 44 : 58), tinta);
+  centro(w.h, zh("b", frase ? 26 : largo ? 44 : 58), tinta, frase ? 2 : 1);
   wg.addSpacer(2);
   centro(w.p, Font.italicSystemFont(17), rojo);
   centro(w.es, Font.systemFont(14), tinta);

@@ -1,5 +1,9 @@
 {
   "inicio": "2026-11-03",
+  "especiales": {
+    "2026-11-25": {"h":"你想学中文吗……","p":"nǐ xiǎng xué Zhōngwén ma……","es":"¿Quieres aprender chino…?","cat":"mensaje"},
+    "2026-11-26": {"h":"那就抓住我的黄瓜","p":"nà jiù zhuā zhù wǒ de huángguā","es":"pues agárrame el pepino","cat":"mensaje"}
+  },
   "palabras": [
     {"h":"你好","p":"nǐ hǎo","es":"hola","cat":"saludos","nota":"Literalmente «tú bien»."},
     {"h":"谢谢","p":"xièxie","es":"gracias","cat":"saludos"},

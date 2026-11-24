@@ -9,6 +9,9 @@ function indiceDe(fecha, inicio, total) {
   return { dias, i: ((dias % total) + total) % total };
 }
 
+// Fecha local como 'AAAA-MM-DD' (para los días especiales).
+const clave = f => `${f.getFullYear()}-${String(f.getMonth() + 1).padStart(2, '0')}-${String(f.getDate()).padStart(2, '0')}`;
+
 const $ = id => document.getElementById(id);
 let datos, palabra;
 
@@ -39,13 +42,15 @@ function pintar() {
   const hoy = new Date();
   const lista = datos.palabras;
   const { dias, i } = indiceDe(hoy, datos.inicio, lista.length);
-  palabra = lista[i];
+  const esp = datos.especiales || {};
+  palabra = esp[clave(hoy)] || lista[i];
 
   $('fecha-zh').textContent = `${zhNum(hoy.getMonth() + 1)}月${zhNum(hoy.getDate())}日 · 星期${DIAS[hoy.getDay()]}`;
   $('fecha-es').textContent = hoy.toLocaleDateString('es-ES', { day: 'numeric', month: 'long' });
   $('cat').textContent = palabra.cat;
   $('hanzi').textContent = palabra.h;
-  $('hanzi').classList.toggle('largo', palabra.h.length > 2);
+  $('hanzi').classList.toggle('largo', palabra.h.length > 2 && palabra.h.length <= 4);
+  $('hanzi').classList.toggle('frase', palabra.h.length > 4);
   $('pinyin').textContent = palabra.p;
   $('es').textContent = palabra.es;
   $('nota').textContent = palabra.nota || '';
@@ -54,7 +59,8 @@ function pintar() {
   // Historial: de hoy hacia atrás, sin repetir.
   const n = Math.min(Math.max(dias, 0) + 1, lista.length);
   $('lista').innerHTML = Array.from({ length: n }, (_, k) => {
-    const w = lista[((i - k) % lista.length + lista.length) % lista.length];
+    const f = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() - k);
+    const w = esp[clave(f)] || lista[((i - k) % lista.length + lista.length) % lista.length];
     return `<li class="${k ? '' : 'hoy'}"><span class="h" lang="zh-CN">${w.h}</span><span class="p">${w.p}</span><span class="e">${w.es}</span></li>`;
   }).join('');
 }
